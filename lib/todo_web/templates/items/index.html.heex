@@ -24,14 +24,15 @@
   <h3><%= item.description %></h3>
 
   <%= if item.completed do %>
-    <p style="color:green;">Completed</p>
+    <p style="color:green;">Complete</p>
       <div>
+        <%=link("Mark Incomplete", to: "/items/#{item.id}/incomplete", method: :patch) %> |
         <%=link("Delete", to: "/items/#{item.id}", method: :delete) %>
       </div>
   <% else %>
-    <p style="color:red;">To be done </p>
+    <p style="color:red;">Incomplete</p>
       <div>
-        <%=link("Mark as completed", to: "/items/#{item.id}/complete", method: :patch) %> |
+        <%=link("Mark Complete", to: "/items/#{item.id}/complete", method: :patch) %> |
         <%=link("Delete", to: "/items/#{item.id}", method: :delete) %>
       </div>
   <% end %>

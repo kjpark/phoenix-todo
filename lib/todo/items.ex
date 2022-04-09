@@ -8,36 +8,26 @@ defmodule Todo.Items do
   end
 
   def list_items() do
-    # query = Item
-    # |> order_by(desc: :id)
-    # Repo.all(query)
-
-    # refactored into
-
     Item
     |> order_by(desc: :id)
     |> Repo.all()
   end
 
-  def mark_completed(id) do
-    # item = Repo.get(Item, id)
-    # item = Ecto.Changeset.change item, completed: true
-    # Repo.update(item)
-
-    # refactored into
-
+  def mark_complete(id) do
     Item
     |> Repo.get(id)
     |> Ecto.Changeset.change(completed: true)
     |> Repo.update()
   end
 
+  def mark_incomplete(id) do
+    Item
+    |> Repo.get(id)
+    |> Ecto.Changeset.change(completed: false)
+    |> Repo.update()
+  end
+
   def delete_item(id) do
-    # item = Repo.get(Item, id)
-    # Repo.delete(item)
-
-    # refactored into
-
     Item
     |> Repo.get(id)
     |> Repo.delete()

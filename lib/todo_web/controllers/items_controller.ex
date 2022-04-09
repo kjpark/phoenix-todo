@@ -16,7 +16,12 @@ defmodule TodoWeb.ItemsController do
   end
 
   def complete(conn, %{"id" => id}) do
-    Items.mark_completed(id)
+    Items.mark_complete(id)
+    redirect(conn, to: "/items")
+  end
+
+  def incomplete(conn, %{"id" => id}) do
+    Items.mark_incomplete(id)
     redirect(conn, to: "/items")
   end
 

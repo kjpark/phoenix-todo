@@ -22,6 +22,7 @@ defmodule TodoWeb.Router do
     get "/items", ItemsController, :index
     post "/items", ItemsController, :create
     patch "/items/:id/complete", ItemsController, :complete
+    patch "/items/:id/incomplete", ItemsController, :incomplete
     delete "/items/:id", ItemsController, :delete
   end
 
