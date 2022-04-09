@@ -17,5 +17,7 @@ defmodule Todo.Items.Item do
   def changeset(item, params) do
     item
     |> cast(params, [:title, :description, :completed])
+    |> validate_required(:title)
+    |> unique_constraint(:title)
   end
 end
