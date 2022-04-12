@@ -11,8 +11,6 @@ defmodule TodoWeb.ItemsController do
   end
 
   def create(conn, %{"item" => item_params}) do
-    # Items.create_item(item_params)
-    # redirect(conn, to: "/items")
 
     case Items.create_item(item_params) do
     {:ok, item} ->
@@ -35,22 +33,23 @@ defmodule TodoWeb.ItemsController do
       |> put_flash(:error, "Error: #{errors}")
       |> redirect(to: Routes.items_path(conn, :index))
     end
+
   end
 
   def complete(conn, %{"id" => id}) do
     Items.mark_complete(id)
-    redirect(conn, to: "/items")
+    redirect(conn, to: Routes.items_path(conn, :index))
   end
 
   def incomplete(conn, %{"id" => id}) do
     Items.mark_incomplete(id)
-    redirect(conn, to: "/items")
+    redirect(conn, to: Routes.items_path(conn, :index))
   end
 
   def delete(conn, %{"id" => id}) do
     Items.delete_item(id)
     conn
     |> put_flash(:info, "Successfully deleted")
-    |> redirect(to: "/items")
+    |> redirect(to: Routes.items_path(conn, :index))
   end
 end
