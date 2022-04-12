@@ -49,6 +49,8 @@ defmodule TodoWeb.ItemsController do
 
   def delete(conn, %{"id" => id}) do
     Items.delete_item(id)
-    redirect(conn, to: "/items")
+    conn
+    |> put_flash(:info, "Successfully deleted")
+    |> redirect(to: "/items")
   end
 end
